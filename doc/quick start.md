@@ -29,9 +29,7 @@ npm install gh-pages --save-dev
 }
 ```
 
-在gatsby-config.js配置文件中添加 pathPrefix，值为你 github 上项目的名称。
-
-> 我不设置 pathPrefix 也没问题，不知道是不是有什么隐藏的 BUG
+在 gatsby-config.js 配置文件中添加 pathPrefix，值为你 github 上项目的名称。如果不设置，你网站根目录可以访问，但是链接跳转时会 404，因为没有将项目名称加入路径。
 
 通过 git 托管你的站点，git init & git remote add origin git@github.com:username/project-name.git
 
