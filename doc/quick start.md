@@ -187,3 +187,88 @@ gatsby develop --https
 * 数据转换
 * 添加第三方服务
 * 任何你能想到的
+
+插件命名规范
+* gatsby-source-*：加载数据插件
+* gatsby-transformer-*：数据转换插件
+* gatsby-[plugin-name]-*：为其他插件服务的插件
+* gatsby-plugin-*：最常用的插件类型，不符合上述三种命名，则采用这种
+
+插件文件
+* package.json
+* gatsby-browser.js
+* gatsby-node.js
+* gatsby-ssr.js
+
+本地插件
+
+如果插件只和特定使用情况相关，或你在开发一个插件，将插件代码放置在你项目根目录下plugins文件夹：
+```shell
+plugins
+└── my-own-plugin
+    └── package.json
+```
+
+NOTE：你需要在gatsby-config.js加入插件，对于本地插件不会自动检测，对于所有的gatsby-*文件不会被babel进行处理，如果你需要使用的JS语法不被当前的node支持，你可以将文件放在src子文件夹下， 将它们编译到plugin文件夹。
+
+### proxy
+方式一：gatsby-config.js 中添加proxy属性。
+
+方式二：gatsby-config.js 中通过 developMiddleware 为 express 应用增加中间件
+
+### SEO
+SEO：Search Engine Optimization
+
+### CSS-in-JS
+优势：解决命名冲突问题
+
+CSS-in-JS的社区实现库
+* Glamor
+* Styled Components
+
+### Markdown 页面
+Gatsby 可以通过 markdown 文件创建页面。
+1. 通过 filesystem 去读文件
+2. 将markdown转成html且格式化成数据
+3. 为markdown页面创建页面组件
+4. 使用 createPage API 创建页面
+
+在 gatsby 中使用 gatsby-source-filesystem 读取文件。使用 gatsby-transformer-remark 将 markdown 转 HTML。
+
+在书写markdown时，需要在文件的开头，增加如下块，你可以有不同的k-v对，这些块将被 gatsby-transformer-remark 解析为 frontmatter（前面事项），GraphQL API 将会在 React 中提供这些数据。
+```
+---
+path: "/blog/my-first-post"
+date: "2017-11-07"
+title: "My first blog post"
+---
+```
+
+使用 Gatsby 的 Node API 创建静态页面
+
+Gatsby 在编译期间运行 createPages API，并且注入参数 boundActionCreators 和 graphql，使用 graphql 查询 markdown 文件数据，再使用 createPage action creator 为每个 markdown 文件使用指定的模版文件去创建页面。
+
+### 增加标签和类别
+本质步骤
+1. 在 markdown 文件中增加标签
+2. 查询所有文章中所有标签
+3. 创建标签页模版
+4. 修改 gatsby-node.js，使用模版渲染页面
+5. 创建一个 tags 首页，用来渲染所有的 tags
+6. 在博客文章中内联标签
+
+### 增加搜索
+增加搜索需要3个必要的组件
+* index
+* engine
+* UI
+
+### 图片处理
+图片优化对任何站点而言都是一个挑战，在不同的设备上具有最佳实践，你需要多种大小和分辨率的图片，gatsby 提供有用的插件帮我们处理图片。
+
+被推荐的方式是使用 GraphQL queries 去得到图片最理想的尺寸和分辨率，然后使用 gatsby-image 组件展示他们。
+
+使用 GraphQL 查询图片，你需要一下插件
+* gatsby-source-filesystem：允许 GraphQL 查询文件
+* gatsby-plugin-sharp：提供连接 Shape 和 Gatsby 能力
+* gatsby-transformer-sharp：允许创建多种大小和分辨率的图片
