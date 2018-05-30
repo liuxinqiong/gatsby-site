@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import g from "glamorous";
+import { css } from "glamor";
+import Link from "gatsby-link";
 
 import Header from '../components/header'
-import './index.css'
+// import './index.css'
+import { rhythm } from "../utils/typography";
+const linkStyle = css({ float: `right` });
 
 const Layout = ({ children, data }) => (
   <div>
@@ -23,7 +28,26 @@ const Layout = ({ children, data }) => (
         paddingTop: 0,
       }}
     >
-      {children()}
+      <g.Div
+        margin={`0 auto`}
+        maxWidth={700}
+        padding={rhythm(2)}
+        paddingTop={rhythm(1.5)}
+      >
+        <Link to={`/`}>
+          <g.H3
+            marginBottom={rhythm(2)}
+            display={`inline-block`}
+            fontStyle={`normal`}
+          >
+            {data.site.siteMetadata.title}
+          </g.H3>
+        </Link>
+        <Link className={linkStyle} to={`/about/`}>
+          About
+        </Link>
+        {children()}
+      </g.Div>
     </div>
   </div>
 )

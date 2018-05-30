@@ -56,6 +56,7 @@ Tags.propTypes = {
 
 export default Tags;
 
+/*
 export const pageQuery = graphql`
   query TagPage($tag: String) {
     allMarkdownRemark(
@@ -75,3 +76,4 @@ export const pageQuery = graphql`
     }
   }
 `;
+*/

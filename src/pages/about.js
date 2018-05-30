@@ -1,15 +1,21 @@
-import React, {
-    Components
-} from 'react'
+import React from "react";
 
-class AboutPage extends Components{
-    render(){
-        return (
-            <div className='about-container'>
-                <p>About me.</p>
-            </div>
-        )
+export default ({data}) => (
+  <div>
+    <h1>About {data.site.siteMetadata.title}</h1>
+    <p>
+      We're the only site running on your computer dedicated to showing the best
+      photos and videos of pandas eating lots of food.
+    </p>
+  </div>
+);
+
+export const query = graphql`
+  query AboutQuery {
+    site {
+      siteMetadata {
+        title
+      }
     }
-}
-
-export default AboutPage
+  }
+`

@@ -16,6 +16,7 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate;
 
 // 查询的数据结构会自动插入你组件的 data 属性
+/*
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -26,3 +27,4 @@ export const pageQuery = graphql`
     }
   }
 `;
+*/

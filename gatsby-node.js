@@ -9,6 +9,7 @@
 const path = require("path");
 const _ = require('lodash')
 
+/*
 exports.createPages = ({
     boundActionCreators,
     graphql
@@ -73,3 +74,4 @@ exports.createPages = ({
         });
     });
 };
+*/
