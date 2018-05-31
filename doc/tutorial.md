@@ -46,4 +46,71 @@ metadata：元数据，帮我们存储共享的数据
 
 graphql 为啥会不报错呢？
 
-Gatsby从Relay借用技术在编译期间将我们的源代码转换成AST（abstract syntax tree），所有的graphql标签的模版会被parser.js和query.compiler.js发现，然后将将它们从源代码中移除。这意味着graphql标签并不是在我们期望的地方执行。这就是为什么没有错误，
+Gatsby从Relay借用技术在编译期间将我们的源代码转换成AST（abstract syntax tree），所有的graphql标签的模版会被parser.js和query.compiler.js发现，然后将将它们从源代码中移除。这意味着graphql标签并不是在我们期望的地方执行。这就是为什么没有错误。
+
+## 数据插件
+GraphiQL：帮你正确构建查询数据的工具，是GraphQL整合在开发环境的IDE。在你构建Gatsby站点时，这是一个十分有用的工具。
+
+通过访问`http://localhost:8000/___graphql`即可进入。基本使用
+* Ctrl + Space 自动提示
+* Ctrl + Enter 运行
+
+在Gatsby中，数据可以来源于任何地方，APIs，databases，CMSs，本地文件等。
+
+数据插件从他们的数据源获取数据，比如filesystem插件如何从文件系统中获取数据，WordPress插件如何从WordPress API中获取数据。
+
+比如我们安装并配置gatsby-source-filesystem插件。重启服务，可以在GraphiQL中看到新添加allFile和file两个字段，看下基础查询的例子
+```js
+{
+  allFile {
+    edges {
+      node {
+        relativePath
+        prettySize
+        extension
+        birthTime
+      }
+    }
+  }
+}
+```
+
+## 转换插件
+filesystem插件帮助我们查询关于文件的数据，但如果我们想查询文件内的数据呢？
+
+要实现这个，Gatsby提供转换插件读取原内容，并且可以转换成可用的数据。
+
+比如Markdown文件，你需要将Markdown转换成HTML。
+
+此时我们需要安装并配置gatsby-transformer-remark插件，重启服务发现GraphiQL中新添加了allMarkdownRemark和markdownRemark字段，看例子如何使用
+```js
+{
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
+          date
+        }
+        // 摘录
+        excerpt
+        timeToRead
+        html
+      }
+    }
+  }
+}
+```
+
+看到没，这两个插件的配合将无所不能
+
+提供查询条件，比如sort和filter字段。跳过多少个节点用skip，限制数据量limit
+
+## 编程式创建页面
+创建新页面有两个步骤
+1. 为page生成path
+2. 创建page
+
+我们需要学会如何使用Gatsby的两个API，onCreateNode 和 createPages，这是两个十分常用的 API。我们只需要在 gatsby-node.js 中 export 同样名称的函数即可。
+
+在这里我们使用 onCreateNode API 为每个 markdown 页面增加 path，所有我们在节点增加的数据都是可使用GraphQL查询的。

@@ -53,7 +53,6 @@ TagsPage.propTypes = {
 
 export default TagsPage;
 
-/*
 export const pageQuery = graphql`
   query TagsQuery {
     site {
@@ -72,4 +71,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-*/

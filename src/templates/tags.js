@@ -16,18 +16,15 @@ const Tags = ({ pathContext, data }) => {
       <h1>{tagHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
-          const { path, title } = node.frontmatter;
+          const { title } = node.frontmatter;
+          const { slug } = node.fields;
           return (
-            <li key={path}>
-              <Link to={path}>{title}</Link>
+            <li key={slug}>
+              <Link to={slug}>{title}</Link>
             </li>
           );
         })}
       </ul>
-      {/*
-              This links to a page that does not yet exist.
-              We'll come back to it!
-            */}
       <Link to="/tags">All tags</Link>
     </div>
   );
@@ -44,9 +41,11 @@ Tags.propTypes = {
         PropTypes.shape({
           node: PropTypes.shape({
             frontmatter: PropTypes.shape({
-              path: PropTypes.string.isRequired,
               title: PropTypes.string.isRequired,
             }),
+            fields: PropTypes.shape({
+              slug: PropTypes.string.isRequired,
+            })
           }),
         }).isRequired
       ),
@@ -56,7 +55,6 @@ Tags.propTypes = {
 
 export default Tags;
 
-/*
 export const pageQuery = graphql`
   query TagPage($tag: String) {
     allMarkdownRemark(
@@ -69,11 +67,12 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
-            path
+          }
+          fields {
+            slug
           }
         }
       }
     }
   }
 `;
-*/

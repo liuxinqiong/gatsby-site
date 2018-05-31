@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import PostLink from '../components/post-link'
+import { rhythm } from "../utils/typography";
+import g from "glamorous";
 
 // const IndexPage = ({
 //   data: {
@@ -15,7 +17,7 @@ import PostLink from '../components/post-link'
 //   return <div>{Posts}</div>
 // }
 
-export default () => <div style={{ color: `tomato` }}>
+export default ({data}) => <div style={{ color: `tomato` }}>
     <h1>Hello Gatsby!</h1>
     <p>what a world</p>
     <img src="https://source.unsplash.com/random/400x200" alt="" />
@@ -27,34 +29,49 @@ export default () => <div style={{ color: `tomato` }}>
       />
     </div>
     <div>
-      <Link to="/page-2/">Link</Link>
+      <g.H1 display={"inline-block"} borderBottom={"1px solid"}>
+        Amazing Pandas Eating Things
+      </g.H1>
+      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+      {data.allMarkdownRemark.edges.map(({ node }) => (
+        <div key={node.id}>
+          <Link to={node.fields.slug} style={{textDecoration:'none',color:'inherit'}}>
+            <g.H3 marginBottom={rhythm(1 / 4)}>
+              {node.frontmatter.title}{" "}
+              <g.Span color="#BBB">— {node.frontmatter.date}</g.Span>
+            </g.H3>
+            <p>{node.excerpt}</p>
+          </Link>
+        </div>
+      ))}
     </div>
     <div>
-      <Link to="/counter/">Counter</Link>
-    </div>
-    <div>
-      <Link to="/index2/">index2</Link>
-    </div>
-    <div>
-      <Link to="/about-css-modules/">about-css-modules</Link>
+      <Link to="/page-2/">Link</Link><br/>
+      <Link to="/counter/">Counter</Link><br/>
+      <Link to="/index2/">index2</Link><br/>
+      <Link to="/about-css-modules/">about-css-modules</Link><br/>
+      <Link to="/my-files/">my-files</Link><br/>
+      <Link to="/tags/">tags</Link><br/>      
     </div>
   </div>;
 
-// export const pageQuery = graphql`
-//   query IndexQuery {
-//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-//       edges {
-//         node {
-//           id
-//           excerpt(pruneLength: 250)
-//           frontmatter {
-//             date(formatString: "MMMM DD, YYYY")
-//             path
-//             title
-//             tags
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
+export const query = graphql`
+  query IndexQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`;
