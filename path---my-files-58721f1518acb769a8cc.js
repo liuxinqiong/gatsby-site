@@ -1,0 +1,2 @@
+webpackJsonp([0x93f8b10ddf38],{396:function(e,t){e.exports={data:{allFile:{edges:[{node:{relativePath:"pandas-and-bananas.md",prettySize:"341 B",extension:"md",birthTime:"2 hours ago"}},{node:{relativePath:"sweet-pandas-eating-sweets.md",prettySize:"306 B",extension:"md",birthTime:"2 hours ago"}}]}},pathContext:{}}}});
+//# sourceMappingURL=path---my-files-58721f1518acb769a8cc.js.map

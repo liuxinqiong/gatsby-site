@@ -1,0 +1,2 @@
+webpackJsonp([0xc6c285f8fd10],{252:function(e,t,l){"use strict";function u(e){return e&&e.__esModule?e:{default:e}}t.__esModule=!0;var a=l(1),n=u(a),d=l(24),f=u(d),o=function(){return n.default.createElement("div",null,n.default.createElement("h1",null,"Hello world from my second Gatsby page"),n.default.createElement(f.default,{to:"/"},"back home"))};t.default=o,e.exports=t.default}});
+//# sourceMappingURL=component---src-pages-page-2-js-d9f55b82a410f1d19195.js.map

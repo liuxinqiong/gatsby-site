@@ -1,0 +1,2 @@
+webpackJsonp([58270511786851],{400:function(a,n){a.exports={data:{allMarkdownRemark:{totalCount:1,edges:[{node:{frontmatter:{title:"Pandas and Bananas"},fields:{slug:"/pandas-and-bananas/"}}}]}},pathContext:{tag:"bananas"}}}});
+//# sourceMappingURL=path---tags-bananas-245222e1026e8fd31971.js.map
