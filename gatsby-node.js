@@ -12,6 +12,8 @@ const {
     createFilePath
 } = require(`gatsby-source-filesystem`);
 
+const createPaginatedPages  = require('gatsby-paginate')
+
 exports.onCreateNode = ({
     node,
     getNode,
@@ -67,6 +69,14 @@ exports.createPages = ({
                 return Promise.reject(result.errors);
             }
             const posts = result.data.allMarkdownRemark.edges;
+            createPaginatedPages({
+                edges: posts,
+                createPage: createPage,
+                pageTemplate: "src/templates/index.js",
+                pageLength: 5, // This is optional and defaults to 10 if not used
+                pathPrefix: "", // This is optional and defaults to an empty string if not used
+                context: {} // This is optional and defaults to an empty object if not used
+              });
             posts.forEach(({
                 node
             }) => {
