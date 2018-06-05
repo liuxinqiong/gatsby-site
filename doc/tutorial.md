@@ -1,5 +1,5 @@
 ## 基础技能
-一下是基本技能，如果提前知道会更好，也可以在学习Gatsby时同步学习。
+以下是基本技能，如果提前知道会更好，也可以在学习Gatsby时同步学习。
 * HTML/CSS/JS
 * React
 * GraphQL
@@ -114,3 +114,9 @@ filesystem插件帮助我们查询关于文件的数据，但如果我们想查�
 我们需要学会如何使用Gatsby的两个API，onCreateNode 和 createPages，这是两个十分常用的 API。我们只需要在 gatsby-node.js 中 export 同样名称的函数即可。
 
 在这里我们使用 onCreateNode API 为每个 markdown 页面增加 path，所有我们在节点增加的数据都是可使用GraphQL查询的。
+
+
+
+gatsby-plugin-react-helmet
+* 作用：服务端数据渲染支持
+* 允许你控制文档head的react组件

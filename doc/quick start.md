@@ -229,13 +229,13 @@ CSS-in-JS的社区实现库
 ### Markdown 页面
 Gatsby 可以通过 markdown 文件创建页面。
 1. 通过 filesystem 去读文件
-2. 将markdown转成html且格式化成数据
-3. 为markdown页面创建页面组件
+2. 将 markdown 转成 html 且格式化成数据
+3. 为 markdown 页面创建页面组件
 4. 使用 createPage API 创建页面
 
 在 gatsby 中使用 gatsby-source-filesystem 读取文件。使用 gatsby-transformer-remark 将 markdown 转 HTML。
 
-在书写markdown时，需要在文件的开头，增加如下块，你可以有不同的k-v对，这些块将被 gatsby-transformer-remark 解析为 frontmatter（前面事项），GraphQL API 将会在 React 中提供这些数据。
+在书写 markdown 时，需要在文件的开头，增加如下块，你可以有不同的k-v对，这些块将被 gatsby-transformer-remark 解析为 frontmatter（前面事项），GraphQL API 将会在 React 中提供这些数据。
 ```
 ---
 path: "/blog/my-first-post"
