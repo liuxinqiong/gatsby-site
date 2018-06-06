@@ -202,7 +202,7 @@ gatsby develop --https
 
 本地插件
 
-如果插件只和特定使用情况相关，或你在开发一个插件，将插件代码放置在你项目根目录下plugins文件夹：
+如果插件只和特定使用情况相关，或你在开发一个插件，将插件代码放置在你项目根目录下 plugins 文件夹：
 ```shell
 plugins
 └── my-own-plugin
